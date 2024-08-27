@@ -238,6 +238,7 @@ function GOS(){
 	//mf this is so time-consuming
 
 	const replay = document.getElementById('replay')
+	const goback = document.getElementById('return')
 	const GOS_Con = document.getElementById('Game_Over_Container')
 	const GOS_V1 = document.getElementById('Visual1_GOS')
 	const GOS_V2 = document.getElementById('Visual2_GOS')
@@ -251,6 +252,14 @@ function GOS(){
 	replay.cursor = 'pointer'
 	replay.style.top = '350px'
 	replay.style.zIndex = '15'
+
+	goback.style.pointerEvents = 'auto'
+	goback.cursor = 'pointer'
+	goback.style.right = '-129px'
+	goback.style.width = 'auto'
+	setTimeout(()=>{
+		goback.style.opacity = '1.0'
+	}, 1500)
 
 	GOS_Con.style.opacity = "1.0"
 	GOS_Con.style.width = "500px"
