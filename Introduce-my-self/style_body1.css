@@ -214,6 +214,7 @@
 	width: 90px;
 	background-color: #BDE8CA;
 	border-radius: 50em;
+	z-index: 2;
 
 	opacity: 0.0;
 
