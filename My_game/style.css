@@ -1,0 +1,254 @@
+body{
+	background-color: #E76F51;
+	display: flex;
+	justify-content: center;
+	align-content: flex-start;
+	flex-direction: column;
+}
+#gamecontainer{
+	margin: auto;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-content: flex-start;
+	overflow: hidden;
+
+}
+#canvas{
+	background-color: #6EACDA;
+	border: 2px solid #1A4870;
+	transition: all 0.25s;
+}
+#score{
+	background-color: #36BA98;
+	color:#E9C46A;
+
+	font-size: 3rem;
+	text-align: center;
+
+	width: 100px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+	overflow: hidden;
+}
+#score p{
+	margin: 0%;
+}
+#score_vs{
+	position: absolute;
+	background-color: #06D001;
+
+	width: 0px;
+	height: 50px;
+
+	font-size: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.0;
+
+	transition: all 1s;
+}
+#SCORE_CONTAINER{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+#score_vs p{
+	color: #379237;
+	background-color: #B8F1B0;
+	width: 100px;
+
+	border-bottom: 3px solid #059212;
+	border-top: 3px solid #059212;
+}
+#Title{
+	margin: auto;
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 700;
+  	font-style: normal;
+  	font-size: 2rem;
+}
+#VisualContainer{
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	border: 2px solid transparent;
+}
+#MainGameContainer{
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	border: 2px solid transparent;
+}
+#game_canvas_container{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+#GameOverVisual{
+
+	position: absolute;
+	width: 0px;
+	height: 600px;
+	background-color: #821131;
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	opacity: 0.0;
+
+	transition: all 0.5s;
+}
+.Visual_GOS{
+	position: absolute;
+}
+#Visual1_GOS{
+	width: 0px;
+	height: 0px;
+	background-color: #C80036;
+	rotate: 0deg;
+
+	transition: all 1.5s;
+	transition-timing-function: cubic-bezier(0.52, -0.01, 0.4, 1.15);
+}
+#Visual2_GOS{
+	z-index: 1;
+	width: 0px;
+	height: 0px;
+	background-color: transparent;
+
+	transition: width 1.5s, height 1.5s, outline 0.5s, rotate 2s;
+	transition-timing-function: ease-in-out;
+}
+#Visual3_GOS{
+	z-index: 1;
+	width: 0px;
+	height: 0px;
+	background-color: transparent;
+
+	transition: all 1.5s;
+}
+#Visual4_GOS{
+	z-index: 0.5;
+	width: 0px;
+	height: 45px;
+	background-color: #FF204E;
+
+	transition: all 2s;
+}
+#Visual5_GOS{
+	z-index: 0.5;
+	width: 45px;
+	height: 0px;
+	background-color: #FF204E;
+
+	transition: all 2s;
+}
+#Text_GOS{
+	z-index: 3;
+	font-size: 3.5rem;
+
+	color: white;
+
+	letter-spacing: 0px;
+
+	user-select: none;
+	transition: all 3s;
+	transition-timing-function: cubic-bezier(0.25, 0.1, 0.12, 1.19);
+}
+#reload_restart{
+	z-index: 10;
+	position: absolute;
+
+	background-color: #A0153E;
+	border: 3px solid #5D0E41;
+
+	color: white;
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 600;
+  	font-style: normal;
+
+  	width: 0%;
+
+	font-size: 1rem;
+
+	top: 0px; /*535px*/
+	outline: 3px solid #5D0E41;
+	outline-offset: 0px;
+
+	transition:all 0.5s, top 3s, width 0.5s, height 0.5s, outline 0.5s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.28, 1.19);
+}
+
+#reload_restart:hover{
+	background-color: #C70039;
+	border: 3px solid #FF004D;
+
+	scale: 1.5 1.5;
+
+	outline: 4px solid transparent;
+	outline-offset: 50px;
+
+	letter-spacing: 10px;
+}
+#reload_restart:active{
+	transition: all 0.25s;
+	background-color: #FF204E;
+	border: none;
+
+	scale: 0.75 0.75;
+}
+#mainMenu_container{
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	background-color: #6EACDA;
+	z-index: 2;
+	border: 2px solid #1A4870;
+
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 700;
+  	font-style: normal;
+  	font-size: 3rem;
+
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	flex-direction: column;
+  	overflow: hidden;
+
+  	transition: all 1s;
+}
+#tutor{
+	width: 800px;
+	text-align: center;
+}
+#play_btn{
+	background-color: #1A4870;
+	color: #6EACDA;
+
+	font-size: 2rem;
+
+	border: none;
+
+	cursor: pointer;
+
+	transition: all 0.5s;
+}
+#play_btn:hover{
+	padding: auto 3%;
+	letter-spacing: 5px;
+}

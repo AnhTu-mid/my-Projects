@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SnakeGame</title>
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+	<div id="game_container">
+		<div id="Title"><p>SNAKE GAME</p></div>
+		<div id="Game_Frame">
+			<div id="MainMenu_container">
+				<div id="tutorial">
+					<p>
+						How to play: eat the apple, dont get hit by wall
+					</p>
+
+					<button id="playbutton">Play</button>
+				</div>
+			</div>
+			<canvas id="game_board" width="500" height="500">
+			</canvas>
+			<div id="game_main" width="500" height="500"></div>
+			<div id="VisualContainer_background" width="500" height="500">
+				<div id="Visual1_bg" class="Visual_bg"></div>
+				<div id="Visual2_bg" class="Visual_bg"></div>
+				<div id="Visual3_bg" class="Visual_bg"></div>
+			</div>
+			<div id="Game_Over_Container" width="500" height="500">
+				<div id="Visual1_GOS" class = "GOS_Child"></div>
+				<div id="Visual2_GOS" class = "GOS_Child"></div>
+				<div id="Visual3_GOS" class = "GOS_Child"></div>
+
+				<div id="Text_GOS" class = "GOS_Child">GAME OVER</div>
+				<div id="Visual1_GOS_Text" class = "GOS_Child"></div>
+				<div id="Visual2_GOS_Text" class = "GOS_Child"></div>
+				<a id="replay" href="snakegame.html">Again</a>
+			</div>
+		</div>
+		<div id="score">0</div>
+		<div id="VisualContainer">
+			<div id="Visual1"></div>
+			<div id="Visual2"></div>
+			<div id="Visual3">
+				<div id="Score_Adjust">+1</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>

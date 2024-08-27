@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dodge the bomb!</title>
+</head>
+<style>
+	body{
+	background-color: #E76F51;
+	display: flex;
+	justify-content: center;
+	align-content: flex-start;
+	flex-direction: column;
+}
+#gamecontainer{
+	margin: auto;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-content: flex-start;
+	overflow: hidden;
+
+}
+#canvas{
+	background-color: #6EACDA;
+	border: 2px solid #1A4870;
+	transition: all 0.25s;
+}
+#score{
+	background-color: #36BA98;
+	color:#E9C46A;
+
+	font-size: 3rem;
+	text-align: center;
+
+	width: 100px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+	overflow: hidden;
+}
+#score p{
+	margin: 0%;
+}
+#score_vs{
+	position: absolute;
+	background-color: #06D001;
+
+	width: 0px;
+	height: 50px;
+
+	font-size: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.0;
+
+	transition: all 1s;
+}
+#SCORE_CONTAINER{
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+#score_vs p{
+	color: #379237;
+	background-color: #B8F1B0;
+	width: 100px;
+
+	border-bottom: 3px solid #059212;
+	border-top: 3px solid #059212;
+}
+#Title{
+	margin: auto;
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 700;
+  	font-style: normal;
+  	font-size: 2rem;
+}
+#VisualContainer{
+	position: absolute;
+	width: 800px;
+	height: 600px;
+	border: 2px solid transparent;
+}
+#game_canvas_container{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+#GameOverVisual{
+
+	position: absolute;
+	width: 0px;
+	height: 600px;
+	background-color: #821131;
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	opacity: 0.0;
+
+	transition: all 0.5s;
+}
+.Visual_GOS{
+	position: absolute;
+}
+#Visual1_GOS{
+	width: 0px;
+	height: 0px;
+	background-color: #C80036;
+	rotate: 0deg;
+
+	transition: all 1.5s;
+	transition-timing-function: cubic-bezier(0.52, -0.01, 0.4, 1.15);
+}
+#Visual2_GOS{
+	z-index: 1;
+	width: 0px;
+	height: 0px;
+	background-color: transparent;
+
+	transition: width 1.5s, height 1.5s, outline 0.5s, rotate 2s;
+	transition-timing-function: ease-in-out;
+}
+#Visual3_GOS{
+	z-index: 1;
+	width: 0px;
+	height: 0px;
+	background-color: transparent;
+
+	transition: all 1.5s;
+}
+#Visual4_GOS{
+	z-index: 0.5;
+	width: 0px;
+	height: 45px;
+	background-color: #FF204E;
+
+	transition: all 2s;
+}
+#Visual5_GOS{
+	z-index: 0.5;
+	width: 45px;
+	height: 0px;
+	background-color: #FF204E;
+
+	transition: all 2s;
+}
+#Text_GOS{
+	z-index: 3;
+	font-size: 3.5rem;
+
+	color: white;
+
+	letter-spacing: 0px;
+
+	user-select: none;
+	transition: all 3s;
+	transition-timing-function: cubic-bezier(0.25, 0.1, 0.12, 1.19);
+}
+#reload_restart{
+	z-index: 10;
+	position: absolute;
+
+	background-color: #A0153E;
+	border: 3px solid #5D0E41;
+
+	color: white;
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 600;
+  	font-style: normal;
+
+  	width: 0%;
+
+	font-size: 1rem;
+
+	top: 0px; /*535px*/
+	outline: 3px solid #5D0E41;
+	outline-offset: 0px;
+
+	transition:all 0.5s, top 3s, width 0.5s, height 0.5s, outline 0.5s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.28, 1.19);
+}
+
+#reload_restart:hover{
+	background-color: #C70039;
+	border: 3px solid #FF004D;
+
+	scale: 1.5 1.5;
+
+	outline: 4px solid transparent;
+	outline-offset: 50px;
+
+	letter-spacing: 10px;
+}
+#reload_restart:active{
+	transition: all 0.25s;
+	background-color: #FF204E;
+	border: none;
+
+	scale: 0.75 0.75;
+}
+</style>
+<body>
+	<div id="Title">DODGE THE BOMB</div>
+	<div id="gamecontainer">
+		<div id="game_canvas_container">
+			<canvas id="canvas"width="800"height=600></canvas>
+			<div id="VisualContainer"></div>
+			<div id="GameOverVisual">
+				<button id="reload_restart">Replay</button>
+				<div id="Text_GOS">GAME OVER</div>
+				<div id="Visual1_GOS" class="Visual_GOS"></div>
+				<div id="Visual2_GOS" class="Visual_GOS"></div>
+				<div id="Visual3_GOS" class="Visual_GOS"></div>
+				<div id="Visual4_GOS" class="Visual_GOS"></div>
+				<div id="Visual5_GOS" class="Visual_GOS"></div>
+			</div>
+		</div>
+		<div id="SCORE_CONTAINER">
+			<div id="score">
+				<p>0</p>
+			</div>
+			<div id="score_vs">
+				<p>+1</p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// game //
+		class BOMB{
+			constructor(size, y, x){
+				this.size = size
+				this.y = y - size
+				this.movable = true
+				this.x = Math.floor(Math.random() * game_w/size) * size
+				this.speed = Math.random() < 0.5 ? 25 : 50; // 50% chance of fast speed, 50% chance of normal speed
+
+				this.coordinate = [{x:this.x,y:this.y}]
+			}
+
+			move(){
+				this.y += this.speed
+				var newRect = {x:this.x,y:this.y}
+				this.coordinate.push(newRect)
+				this.coordinate.shift()
+			}
+			checkTouched(REAL_game_h){
+				for(let i = 0; i<this.coordinate.length; i++){
+					if(this.coordinate[i].y >= REAL_game_h){
+						return true
+					}
+				}
+				return false
+			}
+		}
+		class PLAYER{
+			constructor(head_c, colors, size, x, y){
+				let randomcolor = Math.floor(Math.random() * colors.length)
+				this.color_body = colors[randomcolor].color
+				this.color_head = head_c
+				this.size = size
+				this.x = x
+				this.y = y
+				this.y_head = y - size
+
+				this.coordinate = [{x:x, y:y}]
+				this.coordinate_head = [{x:x, y:this.y_head}]
+			}
+
+			checkLeft(){
+				for(let i = 0; i<this.coordinate.length; i++){
+					if(this.coordinate[i].x <= 25 - 25){
+						return true
+					}
+				}
+
+				return false
+			}
+
+			checkRight(){
+				for(let i = 0; i<this.coordinate.length; i++){
+					if(this.coordinate[i].x >= game_w - 25){
+						return true
+					}
+				}
+
+				return false
+			}
+
+			move(direction){
+				if(direction == 'left' && !this.checkLeft()){
+					this.x -= this.size
+					var newRect = {x:this.x, y:this.y}
+					this.coordinate.push(newRect)
+					this.coordinate_head.push({x:this.x, y:this.y_head})
+					this.coordinate.shift()
+					this.coordinate_head.shift()
+				}else if(direction == 'right' && !this.checkRight()){
+					this.x += this.size
+					var newRect = {x:this.x, y:this.y}
+					this.coordinate.push(newRect)
+					this.coordinate_head.push({x:this.x, y:this.y_head})
+					this.coordinate.shift()
+					this.coordinate_head.shift()
+				}
+			}
+		}
+		class EXPLOSION{
+			constructor(div_ex_size, x, y, time, c, eAng, transparent, cir, outline, shadow){
+				this.div_ex = document.createElement('div')
+				this.time = time
+
+			  	this.div_ex.style.backgroundColor = c
+			  	this.div_ex.style.width = div_ex_size + 'px'
+			  	this.div_ex.style.height = div_ex_size + 'px'
+			  	this.div_ex.style.position = 'absolute'
+			  	this.div_ex.style.top = (y - div_ex_size/2) + 'px'
+			  	this.div_ex.style.left = (x - div_ex_size/2) + 'px'
+			  	this.div_ex.style.transition = 'all ' + time + 's'
+			  	this.div_ex.style.opacity = transparent
+
+			  	if(cir){
+			  		this.div_ex.style.borderRadius = cir + 'px'
+			  	}
+			  	if(outline){
+			  		this.div_ex.style.outline = outline.width + 'px solid ' + outline.color
+			  		this.div_ex.style.outlineOffset = outline.offset + 'px'
+			  	}
+			  	if(shadow){
+			  		this.div_ex.style.boxShadow = `0px 0px 0px 0px white`
+			  	}
+
+			  	setTimeout(()=>{
+			  		this.div_ex.style.rotate = eAng + 'deg'
+			  		this.div_ex.style.opacity = '0.5'
+			  		this.div_ex.style.width = div_ex_size + 20 + 'px'
+			  		this.div_ex.style.height = div_ex_size + 20 + 'px'
+
+			  		if(outline){
+			  			this.div_ex.style.outlineOffset = outline.maxoffset + 'px'
+			  			this.div_ex.style.outline = outline.maxwidth + 'px solid' + outline.color
+			  		}
+			  		if(shadow){
+			  			this.div_ex.style.boxShadow = `0px 0px ${shadow.blur}px ${shadow.spread}px ${shadow.color}`
+			  		}
+
+			  		this.div_ex.style.top = (y - (div_ex_size + 10)/2) + 'px'
+			  		this.div_ex.style.left = (x - (div_ex_size + 10)/2) + 'px'
+			  	}, 0)
+
+			  	setTimeout(()=>{
+			  		this.div_ex.style.opacity = '0.0'
+			  	}, (this.div_ex.style.transitionDuration.substr(0, 1) * 1000)/2)
+
+			  	setTimeout(()=>{
+			  		this.div_ex.remove()
+			  	}, (this.div_ex.style.transitionDuration.substr(0, 1) * 1000))
+
+			  	document.getElementById('VisualContainer').appendChild(this.div_ex)
+			}
+		}
+
+		const canvas = document.getElementById('canvas')
+		const score_board = document.getElementById('score')
+		const reload_game = document.getElementById('reload_restart')
+		const ctx = canvas.getContext('2d')
+
+		var score = 0
+		var size = 25
+		var game_w = canvas.width
+		var game_h= canvas.height
+		var REAL_game_h = canvas.height - 50
+		var sq_aX = game_w/size
+		var sq_aY = game_h/size
+		var speed = 5
+		var bomb_drop_speed = 5
+		var gameOver = false
+
+		var direction = 'none'
+
+		var player_colors = [
+			{color:"#D02E2E"}, /*RED*/
+			{color:"#3469CB"}, /*BLUE*/
+			{color:"#DBD133"}, /*YELLOW*/
+			{color:"#9437CF"}, /*PURPLE*/
+			{color:"#2FC02F"}, /*GREEN*/
+			{color:"#DB3AD9"}  /*PINK*/ ]
+		var HeadColor = "#E5AF8B"
+		var bombColor = "#393333"
+		var groundColor = "#158000"
+
+		var bombs = [new BOMB(size, 25, 25), new BOMB(size, 25, 25)]
+		var player = new PLAYER(HeadColor, player_colors, size, 25, REAL_game_h)
+
+		let explosionTimer = 0;
+
+		function drawExplosion(x, y) {
+			var ex2 = new EXPLOSION(40, x, y, 1, 'orange', 225, 0.5, false, {width: 0, color: "#ff0000", offset: 0, maxoffset: 10, maxwidth:2})
+		  	var ex1 = new EXPLOSION(35, x, y, 1, 'red', 180, 1.0, false, false, {blur: 50, spread: 5, color: "red"})
+		  	var ex3 = new EXPLOSION(20, x, y, 1, '#fc9803', 225, 0.5, 50, {width: 2, color: "#ff683b", offset: 5, maxoffset: 20, maxwidth:5}, {blur: 25,  spread: 15, color: "red"})
+
+		  	// Create a circle with a radius that increases over time
+		  	ctx.beginPath();
+		  	ctx.arc(x, y, 10, 0, 2 * Math.PI);
+		  	ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+		  	ctx.fill();
+
+		  	for (let i = 1; i < 5; i++) {
+			    ctx.beginPath();
+			    ctx.arc(x, y, 10 + i * 5, 0, 2 * Math.PI);
+			    ctx.fillStyle = `rgba(255, 226, 5, ${0.5 - i * 0.1})`;
+			    ctx.fill();
+			}
+		}
+
+		function updateExplosion() {
+		  	explosionTimer++;
+		  	if (explosionTimer < 10) {
+		    	drawExplosion(player.coordinate_head[0].x + size/2 , player.coordinate_head[0].y - size/2);
+		  	} else {
+		    	explosionTimer = 0;
+		  	}
+		}
+
+		window.onload = ()=>{
+		  	setInterval(show, 1000/speed)
+		  	setInterval(update_bomb, 15000)
+		}
+
+		function update_bomb(){
+			if(!gameOver){
+				console.log(bombs.length + " bombs")
+				bombs.push(new BOMB(size, 25, 25))
+				var vs_score = document.getElementById('score_vs')
+			  	vs_score.style.width = '100px'
+			  	vs_score.style.opacity = '1.0'
+			  	score += 1
+			  	setTimeout(()=>{
+			  		score_board.textContent = score
+			  	}, 1000)
+			  	setTimeout(()=>{
+			  		console.log(vs_score.style.width)
+			  		vs_score.style.width = '0px'
+			  		vs_score.style.opacity = '0.0'
+			  	},2000)
+			}
+		}
+
+		function show(){
+		  	update()
+		  	draw()
+		}
+
+		function update(){
+		  	ctx.clearRect(0,0, game_w, game_h)
+		  	if(!gameOver){
+		    	for(let i = 0; i<bombs.length; i++){
+		      		var bomb = bombs[i]
+		      		if(bomb.checkTouched(REAL_game_h)){
+				    	drawExplosion(bomb.coordinate[0].x + size/2 , bomb.coordinate[0].y - size/2);
+		        		bombs[i] = new BOMB(size, 25, 25)
+		      		}else{
+		        		bomb.move()
+		      		}
+		    	}
+		    	checkGameOver()
+		  	}
+		}
+
+		function draw(){
+		  	drawBG()
+		  	drawBomb()
+		  	drawPlayer()
+		}
+		function checkGameOver(){
+		  	for(let k = 0; k<bombs.length; k++){
+		    	var bomb = bombs[k]
+		    	for(let i = 0; i<player.coordinate.length; i++){
+		      		for(let j = 0; j<bomb.coordinate.length; j++){
+		        		if(player.coordinate[i].x == bomb.coordinate[j].x && player.coordinate[i].y == (bomb.coordinate[j].y + (size * 2))){
+		          			updateExplosion()
+		          			gameOver_sfx.play()
+		          			console.log('game over')
+		          			gameOver = true
+		          			GOS()
+		        		}
+		      		}
+		    	}
+		  	}
+		}
+		function GOS(){
+			var GameOverVisual = document.getElementById('GameOverVisual')
+			var Visual1_GOS = document.getElementById('Visual1_GOS')
+			var Visual2_GOS = document.getElementById('Visual2_GOS')
+			var Visual3_GOS = document.getElementById('Visual3_GOS')
+			var Visual4_GOS = document.getElementById('Visual4_GOS')
+			var Visual5_GOS = document.getElementById('Visual5_GOS')
+			var Text_GOS = document.getElementById('Text_GOS')
+
+
+			GameOverVisual.style.opacity = '1.0'
+			GameOverVisual.style.width = '800px'
+
+			Visual1_GOS.style.width = '400px'
+			Visual1_GOS.style.height = '400px'
+			Visual1_GOS.style.rotate = `${45 * 7}deg`
+			setTimeout(()=>{
+				Visual1_GOS.style.outline = '5px solid #FF204E'
+				Visual1_GOS.style.outlineOffset = '50px'
+			}, 1500)
+
+			Visual2_GOS.style.rotate = '360deg'
+			Visual2_GOS.style.outline = '20px solid #FF6969'
+			setTimeout(()=>{
+				Visual2_GOS.style.width = '350px'
+				Visual2_GOS.style.height = '350px'
+			}, 150)
+
+			Visual3_GOS.style.width = '200px'
+			Visual3_GOS.style.height = '200px'
+			Visual3_GOS.style.outline = '20px solid #FF204E'
+			Visual3_GOS.style.borderRadius = '100%'
+
+			Visual4_GOS.style.width = '804px'
+
+			Visual5_GOS.style.height = '604px'
+
+			Text_GOS.style.letterSpacing = '10px'
+
+			reload_restart.style.transition = 'top 0.5s cubicBezier(0.46, 0.03, 0.28, 1.19)'
+			setTimeout(()=>{		
+				reload_restart.style.transition = 'top 3s cubicBezier(0.46, 0.03, 0.28, 1.19)'
+			},1000);
+			reload_restart.style.top = '535px'
+			reload_restart.style.width = 'auto'
+		}
+
+		function drawBG(){
+		  createRect(0, game_h - 50, game_w, 50, groundColor)
+		}
+		function drawBomb(){
+		  	for(let j = 0; j<bombs.length; j++){
+		    	var bomb = bombs[j]
+		    	for(let i = 0; i<bomb.coordinate.length; i++){
+		      		createRect(bomb.coordinate[i].x, bomb.coordinate[i].y - size, size, size, bombColor)
+		    	}
+		  	}
+		}
+		function drawPlayer(){
+		  	for(let i = 0; i<player.coordinate.length; i++){
+		    	createRect(player.coordinate[i].x, player.coordinate[i].y - size, size, size, player.color_body)
+		  	}
+		  	for(let i = 0; i<player.coordinate_head.length; i++){
+		    	createRect(player.coordinate_head[i].x, player.coordinate_head[i].y - size, size, size, player.color_head)
+		  	}
+		}
+
+		function createRect(x, y, w, h, c){
+		  	ctx.fillStyle = c
+		  	ctx.fillRect(x, y, w, h)
+		}
+
+		window.addEventListener('keydown', (event) => {
+		  	// console.log(event.keyCode) 
+		  	if(!gameOver){
+			  	if ((event.keyCode == 65 || event.keyCode == 37)) {
+			   	console.log(direction)
+			    	direction = 'left'
+			    	player.move(direction)
+			  	} else if ((event.keyCode == 68 || event.keyCode == 39)) {
+			    	console.log(direction)
+			    	direction = 'right'
+			    	player.move(direction)
+			  	}
+			}
+		})
+		reload_restart.addEventListener('click', ()=>{
+			location.reload()
+		})
+	</script>
+</body>
+</html>

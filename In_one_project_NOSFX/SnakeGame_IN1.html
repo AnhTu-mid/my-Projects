@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SnakeGame</title>
+</head>
+<style>
+body{
+	background-color: #606676;
+}
+#game_container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+#score{
+	font-family: "Permanet Marker", cursive;
+  	font-weight: 400;
+  	font-style: normal;
+	font-size: 3.5rem;
+	color: #FFF5E0;
+	text-align: center;
+
+	text-shadow: 0px 0px 5px #BEC6A0;
+
+	width: 48.4%;
+	margin: auto;
+
+	transition: all 5s;
+}
+#game_board{
+	border: 4px solid lightgreen;
+	box-shadow: 0px 0px 100px -4px #003D00 inset;
+	-webkit-box-shadow: 0px 0px 100px -4px #003D00 inset;
+	-moz-box-shadow: 0px 0px 100px -4px #003D00 inset;
+	background-color: black;
+
+	transition: all, 0.5s;
+
+	display: flex;
+}
+#VisualContainer{
+	width: 25%;
+	height: 3.5rem;
+
+	position: relative;
+
+	top: -65px;
+
+	margin: auto;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#Visual1{
+	width: 0%;
+	height: 100%;
+
+	border-top: 2.5px solid #003D00;
+	border-bottom: 2.5px solid #003D00;
+	box-shadow: 0px 0px 150px -50px darkgreen; inset;
+	-webkit-box-shadow: 0px 0px 150px -50px darkgreen inset;
+	-moz-box-shadow: 0px 0px 150px -50px darkgreen inset;
+
+	position: absolute;
+
+	opacity: 0.5;
+
+	transition: all 1s;
+
+	flex-basis: 40px;
+}
+#Visual2{
+	background-color: #41B06E;
+
+	width: 0px; /*Max size: 65*/
+	height: 0px;
+
+	position: absolute;
+
+	opacity: 1.0;
+
+	transition: all 1s;
+
+	box-shadow: 0px 0px 10px #003D00 inset;
+	flex-basis: 50px;
+
+	transform: rotate(360deg);
+}
+#Visual3{
+	width: 0px;
+	height: 0px;
+
+	position: absolute;
+
+	opacity: 0.0;
+
+	outline: 0px solid darkgreen; /*Base: 5px*/
+	outline-offset: 0px; /*Base 35px*/
+
+	transition: all 1s;
+
+	flex-basis: 50px;
+
+	transform: rotate(-360deg);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#Visual3 div{
+	text-align: center;
+	font-family: "Edu VIC WA NT Beginner", cursive;
+  	font-size: 1.5rem;
+  	font-weight: 500;
+  	font-style: normal;
+}
+#Game_Frame{
+	display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#VisualContainer_background{
+	position: absolute;
+	width: 500px;
+	height: 500px;
+
+	display: flex;
+	align-items: center;
+    justify-content: center;
+
+   	box-shadow: 0px 0px 25px black;
+
+    transition: all 2s;
+}
+.Visual_bg{
+	position: absolute;
+
+	flex-basis: 100px;
+}
+#Visual1_bg{
+	width: 100px;
+	height: 100px;
+	background-color: #BDE8CA;
+	opacity: 0.15;
+
+	rotate: 45deg;
+
+	box-shadow: 0px 0px 50px #41B3A2 inset;
+
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.46, 1.12);
+}
+#Visual2_bg{
+	width: 200px;
+	height: 200px;
+	background-color: #41B3A2;
+	opacity: 0.15;
+
+	rotate: -135deg;
+
+	box-shadow: 0px 0px 10px #003D00 inset;
+
+	outline: 5px solid #BDE8CA;
+	outline-offset: 50px;
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.46, 1.12);
+}
+#Visual3_bg{
+	width: 300px;
+	height: 300px;
+	background-color: #0D7C66;
+	opacity: 0.15;
+
+	rotate: 0deg;
+
+	box-shadow: 0px 0px 10px #003D00 inset;
+
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.46, 1.12);
+}
+#Title{
+	position: absolute;
+	display: flex;
+
+	width: 50%;
+	height: 10%;
+
+	z-index: 1;
+}
+#Title p{
+	margin: auto;
+	font-size: 50px;
+	color: #BDE8CA;
+	opacity: 0.5;
+}
+#Game_Over_Container{
+	position: absolute;
+
+	background-color: #00224D;
+
+	width: 0px; /*BASE 500px*/
+	height:0px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 2;
+
+	transition: all 2s;
+}
+.GOS_Child{
+	position: absolute;
+}
+#Visual1_GOS{
+	z-index: 1;
+	background-color: #FF204E;
+
+	width: 0%; /*BASE 100%*/
+	height: 50%;/*BASE 25%*/
+	opacity: 0.0;
+
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#Visual2_GOS{
+	background-color: #A0153E;
+
+	width: 0px; /*BASE 200px*/
+	height: 0px;/*BASE 200px*/
+
+	outline: 5px solid transparent;
+	outline-offset: 0px;
+
+	rotate: -180deg; /*BASE 45px*/
+	z-index: 1;
+
+	opacity: 0.75;
+
+	transition: all 2s;
+
+}
+#Visual3_GOS{
+	background-color: darkred;
+
+	opacity: 0.5;
+
+	width: 0px;/*BASE 325px*/
+	height: 0px;/*BASE 325px*/
+
+	rotate: 225deg;
+
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.02, -0.17, 0.21, 1.05);
+}
+#Text_GOS{
+	z-index: 5;
+	font-size: 0rem; /*BASE 3rem*/
+	letter-spacing: 0px;/*BASE 10px*/
+	color: #5D0E41;
+	text-shadow: 2px 2px 0px black;
+
+	text-align: center;
+
+	transition: all 2s;
+	transition-timing-function: cubic-bezier(0.46, -0.04, 0.42, 1.08);
+}
+#Visual1_GOS_Text{
+	z-index: 5;
+	width: 0%;/*BASE 75%*/
+	height: 10%;/*BASE 7&*/
+
+	border-top: 4px solid #5D0E41;
+	border-bottom: 4px solid #5D0E41;
+
+	transition: all 2.5s;
+	transition-timing-function: cubic-bezier(0.52, -0.56, 0.62, 1.38);
+}
+#Visual2_GOS_Text{
+	width: 0px;/*BASE 150px*/
+	height: 0px;/*BASE 150px*/
+	z-index: 4;
+	opacity: 0.5;
+	border-radius: 100%;
+
+	outline: 5px solid transparent;
+	outline-offset: 0px;
+
+	background-color: #FF204E;
+
+	transition: all 2.5s;
+}
+</style>
+<body>
+	<div id="game_container">
+		<div id="Title"><p>SNAKE GAME</p></div>
+		<div id="Game_Frame">
+			<canvas id="game_board" width="500" height="500">
+			</canvas>
+			<div id="VisualContainer_background" width="500" height="500">
+				<div id="Visual1_bg" class="Visual_bg"></div>
+				<div id="Visual2_bg" class="Visual_bg"></div>
+				<div id="Visual3_bg" class="Visual_bg"></div>
+			</div>
+			<div id="Game_Over_Container" width="500" height="500">
+					<div id="Visual1_GOS" class = "GOS_Child"></div>
+					<div id="Visual2_GOS" class = "GOS_Child"></div>
+					<div id="Visual3_GOS" class = "GOS_Child"></div>
+
+					<div id="Text_GOS" class = "GOS_Child">GAME OVER</div>
+					<div id="Visual1_GOS_Text" class = "GOS_Child"></div>
+					<div id="Visual2_GOS_Text" class = "GOS_Child"></div>
+				</div>
+		</div>
+		<div id="score">0</div>
+		<div id="VisualContainer">
+			<div id="Visual1"></div>
+			<div id="Visual2"></div>
+			<div id="Visual3">
+				<div id="Score_Adjust">+1</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// Snake game //
+
+		const canvas = document.getElementById('game_board')
+
+		const Visual1 = document.getElementById('Visual1')
+		const Visual2 = document.getElementById('Visual2')
+		const Visual3 = document.getElementById('Visual3')
+
+		const Visual1_bg = document.getElementById('Visual1_bg')
+		const Visual2_bg = document.getElementById('Visual2_bg')
+		const Visual3_bg = document.getElementById('Visual3_bg')
+		const Score_Adjust = document.getElementById('Score_Adjust')
+
+		const score_board = document.getElementById('score')
+		const game_w = canvas.width;
+		const game_h = canvas.height;
+		var space_size = 20
+		var speed = 7
+		var Color_Snake = "#00FF00"
+		var score = 0
+		var Spin_Bg = false
+		const Version_apple = [{Buff:true, Size:25, Color:"red"}, {Buff:false, Size:20, Color:"orange"}]
+
+		class Snake{
+			constructor(x, y, size){
+				this.x = x
+				this.y = y
+				this.size = size
+				this.tail = [{x:this.x, y:this.y}, {x:this.x + this.size, y:this.y + this.size}]
+				this.rotateX = 0
+				this.rotateY = 1
+				this.color = Color_Snake
+			}
+
+			move(){
+				var newRect
+				if(this.rotateX == 1){ //Right?
+					newRect = {
+						x:this.tail[this.tail.length - 1].x + this.size,
+						y:this.tail[this.tail.length - 1].y
+					}
+
+				}else if(this.rotateX == -1){ //Left?
+					newRect = {
+						x:this.tail[this.tail.length - 1].x - this.size,
+						y:this.tail[this.tail.length - 1].y
+					}
+				}else if(this.rotateY == 1){ //Up?
+					newRect = {
+						x:this.tail[this.tail.length - 1].x,
+						y:this.tail[this.tail.length - 1].y + this.size
+					}
+
+				}else if(this.rotateY == -1){ //Down?
+					newRect = {
+						x:this.tail[this.tail.length - 1].x,
+						y:this.tail[this.tail.length - 1].y - this.size
+					}
+				}
+
+				this.tail.shift()
+				this.tail.push(newRect)
+			}
+		}
+
+		class Apple{
+			constructor(){
+				var isTouching
+				while(true){
+					isTouching = false
+					this.x = Math.floor(Math.random() * game_w/snake.size) * snake.size
+					this.y = Math.floor(Math.random() * game_h/snake.size) * snake.size
+					
+					for(var i = 0; i<snake.tail.length; i++){
+						if(this.x== snake.tail[i].x && this.y == snake.tail[i].y){
+							isTouching = true
+						}
+					}
+					if (!isTouching) {
+						break
+					}
+				}
+
+				const random = Math.floor(Math.random() * Version_apple.length)
+				this.color = Version_apple[random].Color
+				this.size = Version_apple[random].Size
+				this.Buff = Version_apple[random].Buff
+				console.log(Version_apple[random])
+			}
+		}
+
+		var snake = new Snake(20, 20, space_size)
+		var apple = new Apple()
+		var apple2 = new Apple()
+		var ctx = canvas.getContext('2d')
+		var game_over = false
+
+		window.onload = ()=>{
+			setInterval(show, 1000/speed)
+		}
+		function show(){
+			update()
+			draw()
+		}
+		function update(){
+			ctx.clearRect(0,0, game_w, game_h)
+			// console.log('Updated')
+			if (!game_over) {
+				snake.move()
+				eatApple()
+				checkHitWall()
+			}
+		}
+		function checkHitWall(){
+			var head = snake.tail[snake.tail.length - 1]
+			if(head.x == -snake.size){
+				game_over = true
+				GOS()
+			}else if(head.x == game_w){
+				game_over = true
+				GOS()
+			}else if(head.y == -snake.size){
+				game_over = true
+				GOS()
+			}else if(head.y == game_h){
+				game_over = true
+				GOS()
+			}
+		}
+		function GOS(){
+			const GOS_Con = document.getElementById('Game_Over_Container')
+			const GOS_V1 = document.getElementById('Visual1_GOS')
+			const GOS_V2 = document.getElementById('Visual2_GOS')
+			const GOS_V3 = document.getElementById('Visual3_GOS')
+			const GOS_Text = document.getElementById('Text_GOS')
+			const GOS_V1T = document.getElementById('Visual1_GOS_Text')
+			const GOS_V2T = document.getElementById('Visual2_GOS_Text')
+
+			GOS_Con.style.opacity = "1.0"
+			GOS_Con.style.width = "500px"
+			GOS_Con.style.height = "500px"
+
+			GOS_V1.style.width = "100%"
+			GOS_V1.style.height = "15%"
+			GOS_V1.style.opacity = "0.5"
+
+			GOS_V2.style.outline = "5px solid #FF204E"
+			GOS_V2.style.outlineOffset = "25px"
+			GOS_V2.style.width = "200px"
+			GOS_V2.style.height = "200px"
+			GOS_V2.style.rotate = "45deg"
+
+			GOS_V3.style.width = "400px"
+			GOS_V3.style.height = "400px"
+			GOS_V3.style.outline = "5px solid #A0153E"
+			GOS_V3.style.outlineOffset = "15px"
+			GOS_V3.style.rotate = "0deg"
+
+			GOS_Text.style.opacity = "1.0"
+			GOS_Text.style.letterSpacing = "10px"
+			GOS_Text.style.fontSize = "3rem"
+
+			GOS_V1T.style.width = "80%"
+			GOS_V1T.style.height = "10%"
+
+			GOS_V2T.style.width = "150px"
+			GOS_V2T.style.height = "150px"
+
+			GOS_V2T.style.outline = "5px solid #FF204E"
+			GOS_V2T.style.outlineOffset = "110px"
+
+			Score_Adjust.textContent = score
+
+			setTimeout(()=>{
+				Visual1.style.zIndex = "6"
+				Visual2.style.zIndex = "6"
+				Visual3.style.zIndex = "6"
+				Visual3.style.transition = "all 1s"
+				Visual1.style.width = "100%"
+				Visual2.style.width = "75px"
+				Visual2.style.height = "75px"
+				Visual2.style.transform = "rotate(-135deg)"
+				Visual3.style.outline = "5px solid darkgreen"
+				Visual3.style.outlineOffset = "35px"
+				Visual3.style.transform = "rotate(0deg)"
+				Visual3.style.opacity = "1.0"
+			}, 1)
+		}
+		function Adjust_score(){
+			if(apple.Buff || apple2.Buff){
+				score += 2
+				Score_Adjust.textContent = "+2"
+			}else{
+				score += 1
+				Score_Adjust.textContent = "+1"
+			}
+		}
+		function eatApple(){
+			if (snake.tail[snake.tail.length - 1].x == apple.x && snake.tail[snake.tail.length - 1].y == apple.y) {
+				Adjust_score()
+				snake.tail[snake.tail.length] = {x:apple.x, y:apple.y}
+
+				apple = new Apple()
+				speed += 5
+
+				DoVisual()
+				DoVisual_Bg()
+			}else if (snake.tail[snake.tail.length - 1].x == apple2.x && snake.tail[snake.tail.length - 1].y == apple2.y) {
+				Adjust_score()
+				snake.tail[snake.tail.length] = {x:apple2.x, y:apple2.y}
+
+				apple2 = new Apple()
+				speed += 5
+
+				DoVisual()
+				DoVisual_Bg()
+			}
+
+			console.log('Current speed: ' + speed)
+		}
+		function DoVisual_Bg(){
+			if (!Spin_Bg) {
+				Spin_Bg = true
+				Visual1_bg.style.rotate = "-135deg"
+				Visual2_bg.style.rotate = "90deg"
+				Visual3_bg.style.rotate = "-225deg"
+			}else{
+				Spin_Bg = false
+				Visual1_bg.style.rotate = "45deg"
+				Visual2_bg.style.rotate = "-135deg"
+				Visual3_bg.style.rotate = "0deg"
+			}
+		}
+		function DoVisual(){
+			
+			Visual1.style.width = "100%"
+			Visual2.style.width = "75px"
+			Visual2.style.height = "75px"
+			Visual2.style.transform = "rotate(-135deg)"
+			Visual3.style.outline = "5px solid darkgreen"
+			Visual3.style.outlineOffset = "35px"
+			Visual3.style.transform = "rotate(0deg)"
+			Visual3.style.opacity = "1.0"
+
+			
+			setTimeout(()=>{
+				if(!game_over){
+					score_board.textContent = score
+					Visual1.style.width = "0%"
+					Visual2.style.transform = "rotate(360deg)"
+					Visual2.style.width = "0px"
+					Visual2.style.height = "0px"
+					Visual3.style.outline = "0px solid darkgreen"
+					Visual3.style.outlineOffset = "0px"
+					Visual3.style.transform = "rotate(-360deg)"
+					Visual3.style.opacity = "0.0"
+				}
+			},1200)
+		}
+		function draw(){
+			//Create snake?
+			for(var i=0; i<snake.tail.length; i++){
+				createRect(snake.tail[i].x + 2.5, snake.tail[i].y + 2.5, snake.size - 5, snake.size - 5, snake.color)
+			}
+
+			//Create food(apple)
+			createRect(apple.x + 2.5, apple.y + 2.5, apple.size - 5, apple.size - 5, apple.color, "#FF5A5A", apple.Buff)
+
+			createRect(apple2.x + 2.5, apple2.y + 2.5, apple2.size - 5, apple2.size - 5, apple2.color, "#FF5A5A", apple2.Buff)
+		}
+		function createRect(x, y, width, height, color, stroke, Buff){
+			ctx.beginPath()
+
+			if(Buff){
+				ctx.fillStyle = color
+				ctx.fillRect(x - 2.5, y - 2.5, width, height)
+			}else{
+				ctx.fillStyle = color
+				ctx.fillRect(x, y, width, height)
+			}
+
+			if(stroke){
+				ctx.strokeStyle = stroke
+				ctx.lineWidth = 1.5
+				if(Buff){
+					ctx.strokeRect(x - 2.5,y - 2.5,width,height)
+				}else{
+					ctx.strokeRect(x,y,width,height)
+				}
+			}
+		}
+		window.addEventListener('keydown', (event) => {
+			//console.log(event.keyCode) 
+		  	setTimeout(() => {
+			    if ((event.keyCode == 65 || event.keyCode == 37) && snake.rotateX != 1) {
+			    	//console.log(event.keyCode + "RotateX to -1 | Left")
+			    	snake.rotateX = -1
+			      	snake.rotateY = 0
+			    } else if ((event.keyCode == 87 || event.keyCode == 38) && snake.rotateY != 1) {
+			    	//console.log(event.keyCode + "RotateY to -1 | Up")
+			      	snake.rotateX = 0
+			      	snake.rotateY = -1
+			    } else if ((event.keyCode == 68 || event.keyCode == 39) && snake.rotateX != -1) {
+			    	//console.log(event.keyCode + "RotateX to 1 | Right")
+			      	snake.rotateX = 1
+			      	snake.rotateY = 0
+			    } else if ((event.keyCode == 83 || event.keyCode == 40) && snake.rotateY != -1) {
+			    	//console.log(event.keyCode + "RotateY to 1 | Down")
+			      	snake.rotateX = 0
+			      	snake.rotateY = 1
+			    }
+		  	}, 1)
+		})
+	</script>
+</body>
+</html>
