@@ -257,13 +257,22 @@
 	transition: all 1s;
 }
 
-@media screen and (max-width: 825px){
+@media screen and (max-width: 825px) and (min-width:300px){
 	.body_container .info1 .infor ul #Name #name_div1{
 		font-size: 1rem;
 	}
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 400px) and (min-width:300px){
+	.nofBoard_container #nofBoard_frame #nofBoard{
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		flex-direction: row;
+	}
+}
+
+@media screen and (max-width: 450px) and (min-width:300px){
 	.body_container .info1 .infor ul{
 		padding: 0%;
 	}
