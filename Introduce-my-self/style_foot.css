@@ -1,0 +1,26 @@
+.foot_container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10%;
+	flex-direction: column;
+}
+.foot_container #title{
+	color: #41B3A2;
+	font-size: 1.5rem;
+	font-weight: bold;
+	font-style: italic;
+	letter-spacing: 10px;
+	text-shadow: 2px 2px 0px #0D7C66;
+}
+.foot_container .navboard-mid{
+	margin-top: 2%;
+	height: 65px;
+	width: 45%;
+
+	outline: 2px solid #41B3A2;
+}
+#copyright{
+	margin-top: 1%;
+	color: #BDE8CA;
+}
