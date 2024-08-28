@@ -5,7 +5,7 @@ var open_nameInfo = false // i guess this one isn't necessary?
 let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 if(isMobile){
-	document.getElementById('link_btn2').attr('href', 'https://anhtu-mid.github.io/my-Projects/Project-TicTacToe/game_mobile.html')
+	document.getElementById('link_btn2').href = 'https://anhtu-mid.github.io/my-Projects/Project-TicTacToe/game_mobile.html'
 }
 
 Name.addEventListener('mouseover', function(){
