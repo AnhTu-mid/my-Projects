@@ -4,6 +4,10 @@ var open_nameInfo = false // i guess this one isn't necessary?
 
 let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+if(isMobile){
+	document.getElementById('link_btn2').attr('href', 'https://google.com')
+}
+
 Name.addEventListener('mouseover', function(){
 	if(!open_nameInfo){
 		open_nameInfo = true
@@ -33,7 +37,7 @@ if(isMobile){
 	open_nameInfo = true
 	const name_div1 = document.getElementById('name_div1')
 	const name_div2 = document.getElementById('name_div2')
-
+	name_div1.style.fontSize = '1rem'
 	name_div1.style.opacity = '1.0'
 	name_div1.style.textDecoration = 'underline'
 	name_div2.style.width = '300px'
