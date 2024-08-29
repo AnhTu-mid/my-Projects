@@ -62,10 +62,7 @@
 	opacity: 0.0;
 
 	transition: all 0.65s;
-
-	left: 100px;
-
-	position: absolute;
+	position: static;
 }
 .body_container .info1 .infor ul #Name #name_div2{
 	background-color: #0D7C66;
