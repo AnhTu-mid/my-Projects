@@ -6,6 +6,7 @@ let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 
 if(isMobile){
 	document.getElementById('link_btn2').href = 'https://anhtu-mid.github.io/my-Projects/Project-TicTacToe/game_mobile.html'
+	document.getElementById('link_btn1').href = 'https://anhtu-mid.github.io/my-Projects/Project-Snake_Game/snakegame_mobile.html'
 }
 
 Name.addEventListener('mouseover', function(){
