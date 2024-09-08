@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather Forecast</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="http://openweathermap.org/img/wn/02d@2x.png">
+</head>
+<body>
+	<div class="loading_container">
+		<div class="loading" id="loading">
+			<div class="loaderTxt" id="loader_txt">...Loading...</div>
+			<div class="loader" id="loader"></div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="currentInfo">
+			<div class="date_container">
+				<div class="time" id="time">
+					12:30 <span id="am-pm">PM</span>
+				</div>
+				<div class="date" id="date">
+					Monday, 24 May
+				</div>
+
+				<div class="other" id="current-weather-items">
+					<div class="weather-item">
+						<p>Humidity</p>
+						<p id="Humidity">91%</p>
+					</div>
+					<div class="weather-item">
+						<p>Pressure</p>
+						<p id="Pressure">121</p>
+					</div>
+					<div class="weather-item">
+						<p>Wind</p>
+						<p id="WindSpeed">3.6Km/h</p>
+					</div>
+				</div>
+			</div>
+			<div class="place_container">
+				<div class="time-zone" id="time-zone">Asia/Ho Chi Minh City</div>
+				<div class="country" id="country">VN</div>
+				<div class="today-title">Today Weather</div>
+				<div class="other" id="current-weather-items">
+					<div class="image_Weather-Container">
+						<img src="http://openweathermap.org/img/wn/02d@2x.png" id="weather-icon" alt="" class="weather-img-icon">
+					</div>
+					<div class="now-temp_container">
+						<div class="weather-item">
+							<p>Day Temp</p>
+							<p id="Day-temp">27&#176;C</p>
+						</div>
+						<div class="weather-item">
+							<p>Night Temp</p>
+							<p id="Night-temp">27&#176;C</p>
+						</div>
+						<div class="weather-item">
+							<p>Weather</p>
+							<p id="Weather">Sunny</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="weather_main_container">
+		<div class="futureForecast_container">
+			<div class="future-forecast">
+				<div class="future-forecast_container">
+					<div class="title_container">
+						<div class="title">
+							Forecast Weather
+						</div>
+					</div>
+					<div class="weather-forecast" id="weather-forecast">
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Sun">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Sun">00:00:00</div>
+							<div class="day" id="day-Sun">Sun</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Sun">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Sun">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Mon">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Mon">00:00:00</div>
+							<div class="day" id="day-Mon">Mon</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Mon">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Mon">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Tue">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Tue">00:00:00</div>
+							<div class="day" id="day-Tue">Tue</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Tue">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Tue">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Wed">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Wed">00:00:00</div>
+							<div class="day" id="day-Wed">Wed</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Wed">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Wed">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Thu">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Thu">00:00:00</div>
+							<div class="day" id="day-Thu">Thu</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Thu">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Thu">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Fri">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Fri">00:00:00</div>
+							<div class="day" id="day-Fri">Fri</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Fri">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Fri">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+						<div class="weather-forecast-item">
+							<div class="weather-forecast-date-item" id="weather-forecast-date-item-Sat">dd/mm/yyyy</div>
+							<div class="forecastTime" id="forecastTime-Sat">00:00:00</div>
+							<div class="day" id="day-Sat">Sat</div>
+							<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="weather icon" class="w-icon" id="weather-icon-Sat">
+							<div class="temp_container">
+								<div id="tempFrame">
+									<div class="temp">Temp</div>
+									<p id="temp-Sat">16&#176;C</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>

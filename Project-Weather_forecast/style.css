@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: "SUSE", system-ui;
+	color: #EEEEEE;
+}
+body{
+	background:url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
+	background-repeat: no-repeat;
+	background-size:cover;
+	overflow:hidden;
+	height: 100vh;
+}
+.container{
+	padding: 20px 70px;
+}
+.currentInfo{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.currentInfo .place_container{
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+	flex-direction: column;
+}
+.currentInfo .place_container .country{
+	font-size: 2rem;
+}
+.currentInfo .place_container .time-zone{
+	font-size: 3rem;
+	font-weight: 100;
+}
+.currentInfo .date_container{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+.currentInfo .date_container .time{
+	font-size: 5rem;
+	font-weight: 100;
+}
+.currentInfo .date_container .time #am-pm{
+	font-weight: 200;
+	font-size: 2.5rem;
+}
+.currentInfo .date_container .date{
+	font-size: 2.5rem;
+	font-weight: 100;
+}
+.currentInfo .other {
+	width: 100%;
+	margin-top: 10px;
+	padding: 15px;
+	position: relative;
+}
+.currentInfo .other > *{
+	z-index: 1;
+}
+.currentInfo .other:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #5F5742FF;
+	box-shadow: 0px 0px 5px black;
+	opacity: 0.5;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+}
+.currentInfo .other .weather-item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	font-size: 1.25rem;
+	font-weight: 100;
+	position: relative;
+	z-index: 1;
+}
+.weather_main_container{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.futureForecast_container{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.future-forecast{
+	background-color: #FFFFFF19;
+	box-shadow: 0px 0px 5px black;
+	padding: 5px 0px 0px 0px;
+    position: relative;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.future-forecast .future-forecast_container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.future-forecast .weather-forecast{
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+.weather-forecast-item{
+	position: relative;
+	padding: 10px 35px;
+	margin: 10px;
+}
+.weather-forecast-item > *{
+	position: relative;
+	z-index: 1;
+}
+.weather-forecast-item .day{
+	text-align: center;
+	font-size: 2.5rem;
+	letter-spacing: 2.5px;
+}
+.weather-forecast-item:after{
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #2C8CDDFF;
+	box-shadow: 0px 0px 5px black;
+	opacity: 0.5;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+}
+.temp_container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.temp_container #tempFrame{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	font-size: 1.25rem;
+	font-weight: 250;
+}
+.weather-forecast-item .weather-forecast-date-item{
+	text-align: center;
+	font-weight: 100;
+}
+.title_container .title{
+	font-size: 1.5rem;
+	letter-spacing: 5px;
+	text-shadow: 0px 0px 5px black;
+}
+.weather-forecast-item .forecastTime{
+	text-align: center;
+	font-size: 0.65rem;
+}
+.container .place_container .today-title{
+	font-size: 2.5rem;
+	font-weight: 100;
+}
+.container .place_container .other img{
+	position: relative;
+	z-index: 1;
+	width: 70px;
+}
+.container .place_container .other .image_Weather-Container{
+	position: relative;
+	margin-right: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container .place_container .other .image_Weather-Container:after{
+	content: '';
+	position: absolute;
+	background-color: #03a9f4;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	opacity: 0.5;
+}
+.container .place_container .other{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.container .place_container .other .now-temp_container{
+	width: 100%;
+}
+.container .place_container .other .now-temp_container p{
+	font-size: 1.25rem;
+}
+.loading_container{
+	min-height: 100vh;
+	min-width: 100vw;
+	position: absolute;
+	z-index: 10;
+}
+.loading_container .loading{
+	min-height: 100vh;
+	min-width: 100vw;
+	background-image: linear-gradient(45deg, #050C9C, #A7E6FF);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	overflow: hidden;
+	transition: all 1s;
+}
+.loading_container .loaderTxt{
+	font-size: 3rem;
+	position: absolute;
+	top: 150px;
+}
+.loader {
+	transition: all 0.5s;
+	position: absolute;
+	border-radius: 50%;
+	width: 100px;
+	scale: 2 2;
+	aspect-ratio: 1;
+	--c: linear-gradient(#fff 0 0);
+	--m: radial-gradient(farthest-side,#fff 92%,#0000);
+	background: 
+		var(--m) center               /12px 12px,
+		var(--c) left 50% top    -20px/8px 16px, 
+		var(--c) left 50% bottom -20px/8px 16px, 
+		var(--c) top  50% left   -20px/16px 8px, 
+		var(--c) top  50% right  -20px/16px 8px;
+	background-repeat: no-repeat;
+	animation: 
+		l18-1 2s infinite ease-in-out,
+		l18-2 2s infinite ease-in-out;
+}
+
+@keyframes l18-1 {
+	25%,
+	75% {background-position: 
+		center,
+		left 50% top    calc(50% - 8px),
+		left 50% bottom calc(50% - 8px),
+		top  50% left   calc(50% - 8px),
+		top  50% right  calc(50% - 8px)}
+}
+@keyframes l18-2 {
+	0%,40%   {transform: rotate(0)}
+	60%,100% {transform: rotate(90deg)}
+}
+@media only screen and (max-width: 730px) and (min-width: 300px){
+	.container{
+		position: relative;
+		padding: 20px 0px;
+	}
+	.currentInfo{
+		justify-content: center;
+		width: 100%;
+	}
+	.currentInfo .date_container .time #am-pm{
+		display: none;
+	}
+	.currentInfo .date_container .date{
+		font-size: 1.5rem;
+	}
+	.currentInfo .place_container{
+		align-items: center;
+	}
+	.currentInfo .place_container .country{
+		font-size: 1rem;
+	}
+	.currentInfo .place_container .time-zone{
+		font-size: 1.5rem;
+		text-align: center;
+		font-weight: 500;
+	}
+}
+@media only screen and (max-width: 1280px) and (min-width: 300px){
+	.future-forecast{
+		justify-content: flex-start;
+		align-items: none;
+		overflow-y: scroll;
+	}
+}
